@@ -132,5 +132,39 @@ public class DataManager {
         }
         return list;
     }
+    // Phase 2
+    public void addVehicle(Vehicle v) throws SQLException {
+        String sql = """
+                INSERT INTO vehicles
+                (vin, year, make, model, vehicle_type, color, odometer, price, sold)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """;
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, v.getVin());
+            statement.setInt(2, v.getYear());
+            statement.setString(3, v.getMake());
+            statement.setString(4, v.getModel());
+            statement.setString(5, v.getVehicleType());
+            statement.setString(6, v.getColor());
+            statement.setInt(7, v.getOdometer());
+            statement.setDouble(8, v.getPrice());
+            statement.setBoolean(9, false);
+
+            statement.executeUpdate();
+
+        }
+    }
+
+    public void removeVehicleByVin(int vin) throws SQLException {
+        String sql  = "DELETE FROM vehicles WHERE vin = ?";
+
+        try(Connection connection = dataSource.getConnection();
+       PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1,vin);
+            statement.executeUpdate();
+        }
+    }
+
 
 }
