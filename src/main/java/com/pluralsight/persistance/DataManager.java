@@ -157,13 +157,41 @@ public class DataManager {
         }
     }
 
-    public void removeVehicleByVin(int vin) throws SQLException {
+    public void removeVehicleByVin(String vin) throws SQLException {
         String sql  = "DELETE FROM vehicles WHERE vin = ?";
 
         try(Connection connection = dataSource.getConnection();
        PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1,vin);
+            statement.setString(1,vin);
             statement.executeUpdate();
+        }
+    }
+    public Vehicle geVehicleByVin(String vin) throws SQLException {
+        String sql = "SELECT * FROM vehicles WHERE vin = ?";
+
+        try (Connection connection = dataSource.getConnection();
+       PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1,vin);
+
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()) {
+                return mapRowToVehicle(resultSet);
+            } else {
+                return null;
+            }
+        }
+    }
+
+
+    public void markVehicleAsSold(String vin) {
+        String sql = "UPDATE vehicles SET sold = TRUE WHERE vin = ?";
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1,vin);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 

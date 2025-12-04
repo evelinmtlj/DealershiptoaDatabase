@@ -12,7 +12,7 @@ public class SalesDao {
 
     private BasicDataSource dataSource;
 
-    private SalesDao(BasicDataSource dataSource){
+    public SalesDao(BasicDataSource dataSource){
         this.dataSource = dataSource;
     }
 
