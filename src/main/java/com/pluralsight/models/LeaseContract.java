@@ -1,4 +1,4 @@
-package com.pluralsight;
+package com.pluralsight.models;
 
 import java.time.LocalDate;
 
@@ -50,16 +50,7 @@ int months = 36;
 return formulaMonthlyPayment(principal,annualRate,months);
 
     }
-A
-    @Override
-    public String toString() {
-                "Customer Email: " + getCustomerEmail() + "\n" +
-                "Vehicle Sold: " + getVehicleSold() + "\n" +
-                "Lease Fee: $" + String.format("%.2f", getLeaseFee()) + "\n" +
-                "Expected Ending Value: $" + String.format("%.2f", getExpectedEndingValue()) + "\n" +
-                "Total Price: $" + String.format("%.2f", getTotalPrice()) + "\n" +
-                "Monthly Payment: $" + String.format("%.2f", getMonthlyPayment());
-    }
+
 
     public String getContractLine(){
         return "LEASE|" + getDateOfContract() + "|" + getCustomerName()
@@ -71,6 +62,18 @@ A
                 + "|" +String.format("%.2f",getTotalPrice())  + "|" + String.format("%.2f",getMonthlyPayment());
 
     }
+
+    @Override
+    public String toString() {
+       return  "Customer Email: " + getCustomerEmail() + "\n" +
+                "Vehicle Sold: " + getVehicleSold() + "\n" +
+                "Lease Fee: $" + String.format("%.2f", getLeaseFee()) + "\n" +
+                "Expected Ending Value: $" + String.format("%.2f", getExpectedEndingValue()) + "\n" +
+                "Total Price: $" + String.format("%.2f", getTotalPrice()) + "\n" +
+                "Monthly Payment: $" + String.format("%.2f", getMonthlyPayment());
+
+    }
+
     //save contract to file
 
 

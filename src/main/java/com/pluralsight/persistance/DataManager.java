@@ -1,5 +1,6 @@
-package com.pluralsight;
+package com.pluralsight.persistance;
 
+import com.pluralsight.models.Vehicle;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.sql.Connection;
@@ -19,7 +20,7 @@ public class DataManager {
 
     //helper method to convert sql to vehicle object
     private Vehicle mapRowToVehicle(ResultSet rs) throws SQLException {
-        int vin = rs.getInt("vin");
+        String vin = rs.getString("vin");
         int year = rs.getInt("year");
         String make = rs.getString("make");
         String model = rs.getString("model");
@@ -141,7 +142,7 @@ public class DataManager {
                 """;
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, v.getVin());
+            statement.setString(1, v.getVin());
             statement.setInt(2, v.getYear());
             statement.setString(3, v.getMake());
             statement.setString(4, v.getModel());

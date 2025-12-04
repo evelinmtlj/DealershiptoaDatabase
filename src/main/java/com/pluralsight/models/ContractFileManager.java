@@ -1,4 +1,4 @@
-package com.pluralsight;
+package com.pluralsight.models;
 
 import java.io.FileWriter;
 import java.io.IOException;

@@ -1,6 +1,7 @@
-package com.pluralsight;
+package com.pluralsight.models;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Dealership {
     private String name; //instance variables
@@ -126,16 +127,16 @@ public class Dealership {
     }
 
 
-public Vehicle getVehicleByVIN(int vin){
+public Vehicle getVehicleByVIN(String vin){
         for ( Vehicle v : this.getAllVehicles()){
-            if (v.getVin() == vin){
+            if (Objects.equals(v.getVin(), vin)){
                 return v;
             }
         }
         return null;
 }
 
-public boolean removeVehicle(int vin){
+public boolean removeVehicle(String vin){
     Vehicle v = getVehicleByVIN(vin);
     if(v == null){
         return false;

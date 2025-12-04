@@ -1,4 +1,4 @@
-package com.pluralsight;
+package com.pluralsight.models;
 
 import java.time.LocalDate;
 
@@ -9,7 +9,7 @@ public class SalesContract extends Contract {
     private boolean finance;
 
 
-    public SalesContract( String customerName, String customerEmail, Vehicle vehicleSold, boolean finance) {
+    public SalesContract(String customerName, String customerEmail, Vehicle vehicleSold, boolean finance) {
         super(LocalDate.now().toString(), customerName, customerEmail, vehicleSold);
         this.finance = finance;
     }
